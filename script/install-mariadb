@@ -1,0 +1,63 @@
+#!/bin/bash
+#PARTIE NON COMPILÉE
+#-----------------
+#Outil(s) utile(s)
+#apt-get install python-software-properties
+#--
+#obtenir les clés du dépots puis l'ajouter
+#apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
+#add-apt-repository 'deb http://mirrors.linsrv.net/mariadb/repo/5.5/debian wheezy main'
+#--
+#Mettre à jours les dépôts et installer mariadb-client + server
+#apt-get update
+#apt-get install mariadb-client
+#apt-get install mariadb-server    
+#-----------------
+#PARTIE COMPILÉE
+#-----------------
+#Placer ici les étapes de compilation de mariadb-server + client
+#
+#
+execPath=$(readlink -f $(dirname $0))
+apt-get build-dep mysql-5.5 -y
+apt-get install -y git
+echo -e "$JAUNE""creation des dossier de MariaDB""$NORMAL"
+mkdir /usr/local/mysql
+mkdir /var/run/mysqld
+mkdir /usr/src/maria
+echo -e "$JAUNE""copie du depot en locale et compilation""$NORMAL"
+cd /usr/src/maria 
+git clone https://github.com/MariaDB/server # copie du depot en locale 
+cd /usr/src/maria/server 
+BUILD/autorun.sh
+./configure
+make verbose=1
+make install
+#Création de l'utilisateur MariaDB, garder l'id entre 750 et 900 par précaution
+echo -e "$JAUNE""création de l utilisateur et copie des fichier de congiguration""$NORMAL"
+useradd -c mysql -d /usr/local/mysql -M -r -s /bin/false -u 750  mysql
+chown mysql:mysql /usr/local/mysql #rendre mysql proprio avec le groupe mysql
+chown mysql:root /var/run/mysqld  #rendre mysql proprio avec le groupe root
+mkdir -p /usr/local/mysql/data/{InnoDB,bdd}
+cd /usr/local/mysql
+/usr/local/mysql/scripts/mysql_install_db --user=mysql --no-defaults
+cd $execPath
+cp ../config/mariadb/mysqld /etc/init.d/mysqld
+chmod +x /etc/init.d/mysqld
+mv /etc/mysql/my.cnf /etc/mysql/my.cnf.default
+mv /usr/local/mysql/bin/mysql_secure_installation /usr/local/mysql/bin/mysql_secure_installation.hold
+cp ../config/mariadb/mysql_secure_installation /usr/local/mysql/bin/mysql_secure_installation
+chmod +x /usr/local/mysql/bin/mysql_secure_installation
+cp ../config/mariadb/my.cnf /usr/local/mysql/my.cnf
+chown -R mysql:mysql /usr/local/mysql
+#étape de fin, lancement de la sécurisation de base de mariadb-serveur, garder cette étape le plus bas possible en cas de modification du script
+#l'utilisateur doit pouvoir laisser la machine faire le plus d'actions elle même possible
+/etc/init.d/mysqld start
+sleep 5
+#Appuyer sur entrée directement pour le mot de passe root
+#Répondre y à "Set root password ?" et indiquer 2 fois le mot de passe
+#Répondre y à "Remove anonymous users ?"
+#Répondre n à "Disallow root login remotely?" nous bloqueront ceci plus tard manuellement une fois tous les utilisateurs créé
+#Répondre y à "Remove test database and acces to it?"
+#Répondre y à "Reload privilege tables now?" 
+exit 0

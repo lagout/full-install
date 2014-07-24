@@ -1,0 +1,36 @@
+#!/bin/bash
+execPath=$(readlink -f $(dirname $0))
+apt-get -y install libpcre3-dev libssl-dev build-essential autoconf libtool
+echo -e "$JAUNE""creation des dossier de nginx""$NORMAL"
+mkdir -p /usr/local/nginx/{conf.d,sites-available,sites-enabled}
+mkdir /var/log/nginx
+mkdir -p /var/lib/nginx/{body,proxy,fastcgi}
+mkdir -p /var/cache/nginx/{tmp,cached}
+echo -e "$JAUNE""création de utilisateur nginx""$NORMAL"
+useradd -c nginx -d /usr/local/nginx -M -r -s /bin/false -u 755  nginx
+cd /usr/src/
+mkdir /usr/src/nginx
+cd /usr/src/nginx 
+echo -e "$JAUNE""télechargement et compilation""$NORMAL"
+wget http://nginx.org/download/nginx-1.6.0.tar.gz -O nginx.tar.gz
+tar zxvf nginx.tar.gz
+cd  nginx-1.6.0
+./configure \--prefix=/usr/local/nginx \--conf-path=/usr/local/nginx/nginx.conf \--http-log-path=/var/log/nginx/access_log \--error-log-path=/var/log/nginx/error_log \--pid-path=/var/run/nginx.pid \--user=nginx \--group=nginx \--http-client-body-temp-path=/var/lib/nginx/body \--http-proxy-temp-path=/var/lib/nginx/proxy \--http-fastcgi-temp-path=/var/lib/nginx/fastcgi \--with-md5=/usr/lib \--with-http_ssl_module \--with-http_gzip_static_module \--with-http_realip_module \--with-http_stub_status_module \--with-http_flv_module \--with-pcre \--without-mail_pop3_module \--without-mail_imap_module \--without-mail_smtp_module \--with-http_degradation_module \--with-debug 
+make 
+make install
+cd $execPath
+cp ../config/nginx/nginx  /etc/init.d/nginx
+cp ../config/nginx/logorate-nginx /etc/logrotate.d/nginx
+mv  /usr/local/nginx/fastcgi.conf /usr/local/nginx/fastcgi.conf.defauflt
+mv  /usr/local/nginx/fastcgi_params /usr/local/nginx/fastcgi_params.defauflt
+mv /usr/local/nginx/nginx.conf /usr/local/nginx/nginx.conf.defauflt
+cp ../config/nginx/fastcgi.conf /usr/local/nginx/fastcgi.conf
+cp ../config/nginx/fastcgi_params /usr/local/nginx/fastcgi_params
+cp ../config/nginx/nginx.conf /usr/local/nginx/nginx.conf
+chown -R nginx /usr/local/nginx/
+chown root:root /etc/logrotate.d/nginx
+chmod +x /etc/init.d/nginx
+/etc/init.d/nginx start
+sleep 10
+
+exit 0

@@ -1,0 +1,26 @@
+#!/bin/bash
+NORMAL="\\033[0;32m"
+#normal = vert
+JAUNE="\\033[1;33m"
+ROUGE="\\033[1;31m"
+execPath=$(readlink -f $(dirname $0))
+#les dependence php
+echo -e "$JAUNE""instalation des dependences ""$NORMAL"
+apt-get install -y build-essential autoconf libtool libxml2 libxml2-dev openssl libcurl4-openssl-dev libbz2-1.0 libbz2-dev libjpeg-dev libpng12-dev libfreetype6 libfreetype6-dev libldap-2.4-2 libldap2-dev libmcrypt4 libmcrypt-dev libmysqlclient-dev libxslt1.1 libxslt1-dev libxt-dev libfreetype6 libicu-dev
+#compilation de php
+echo -e "$JAUNE""compilation de php""$NORMAL"
+mkdir /usr/src/php 
+cd /usr/src/php 
+wget http://be2.php.net/distributions/php-5.5.14.tar.gz
+tar zxvf php-5.5.14.tar.gz 
+cd php-5.5.14
+./configure  --enable-fpm \--with-fpm-user=nginx \--enable-pdo=shared \--with-pdo-mysql=shared \--enable-sockets \--enable-soap \--enable-ftp \--enable-wddx \--enable-pcntl \--enable-soap \--enable-bcmath \--enable-mbstring \--enable-dba \--enable-gd-native-ttf \--enable-zip \--enable-calendar \--with-mysql=shared \--with-mysqli=shared \--with-pdo-sqlite=shared \--with-iconv \--with-zlib \--with-bz2 \--with-gettext \--with-xmlrpc \--with-openssl \--with-mhash \--with-mcrypt \--with-xsl \--with-curl \--with-pcre-regex \--with-gd=shared \--with-freetype-dir=/usr/lib/x86_64-linux-gnu/ \--with-config-file-path=/usr/local/etc/php/cgi \--with-config-file-scan-dir=/usr/local/etc/php/mods-available\ 
+make  
+make install
+cd $execPath
+cp  -r ../config/php/php5 /usr/local/etc/php
+cp ../config/php/init.d.php-fpm /etc/init.d/php-fpm
+chmod +x /etc/init.d/php-fpm
+sleep 10
+
+exit 0

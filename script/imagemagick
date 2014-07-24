@@ -1,0 +1,8 @@
+#!/bin/bash
+cd /usr/src
+wget http://sourceforge.net/projects/imagemagick/files/6.8.9-sources/ImageMagick-6.8.9-5.tar.gz/download
+tar xvf download
+cd ImageMagick-6.8.9-5/
+./configure --with-modules \--with-imagick=/opt/local
+make
+make install
