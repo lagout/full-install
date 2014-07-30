@@ -1,23 +1,4 @@
 #!/bin/bash
-#PARTIE NON COMPILÉE
-#-----------------
-#Outil(s) utile(s)
-#apt-get install python-software-properties
-#--
-#obtenir les clés du dépots puis l'ajouter
-#apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
-#add-apt-repository 'deb http://mirrors.linsrv.net/mariadb/repo/5.5/debian wheezy main'
-#--
-#Mettre à jours les dépôts et installer mariadb-client + server
-#apt-get update
-#apt-get install mariadb-client
-#apt-get install mariadb-server    
-#-----------------
-#PARTIE COMPILÉE
-#-----------------
-#Placer ici les étapes de compilation de mariadb-server + client
-#
-#
 execPath=$(readlink -f $(dirname $0))
 apt-get build-dep mysql-5.5 -y
 apt-get install -y git

@@ -14,7 +14,40 @@ cd /usr/src/php
 wget http://be2.php.net/distributions/php-5.5.15.tar.gz
 tar zxvf php-5.5.15.tar.gz 
 cd php-5.5.15
-./configure  --enable-fpm \--with-fpm-user=nginx \--enable-pdo=shared \--with-pdo-mysql=shared \--enable-sockets \--enable-soap \--enable-ftp \--enable-wddx \--enable-pcntl \--enable-soap \--enable-bcmath \--enable-mbstring \--enable-dba \--enable-gd-native-ttf \--enable-zip \--enable-calendar \--with-mysql=shared \--with-mysqli=shared \--with-pdo-sqlite=shared \--with-iconv \--with-zlib \--with-bz2 \--with-gettext \--with-xmlrpc \--with-openssl \--with-mhash \--with-mcrypt \--with-xsl \--with-curl \--with-pcre-regex \--with-gd=shared \--with-freetype-dir=/usr/lib/x86_64-linux-gnu/ \--with-config-file-path=/usr/local/etc/php/cgi \--with-config-file-scan-dir=/usr/local/etc/php/mods-available\ 
+./configure  --enable-fpm \
+	--with-fpm-user=nginx \
+	--enable-pdo=shared \
+	--with-pdo-mysql=shared \
+	--enable-sockets \
+	--enable-soap \
+	--enable-ftp \
+	--enable-wddx \
+	--enable-pcntl \
+	--enable-soap \
+	--enable-bcmath \
+	--enable-mbstring \
+	--enable-dba \
+	--enable-gd-native-ttf \
+	--enable-zip \
+	--enable-calendar \
+	--with-mysql=shared \
+	--with-mysqli=shared \
+	--with-pdo-sqlite=shared \
+	--with-iconv \
+	--with-zlib \
+	--with-bz2 \
+	--with-gettext \
+	--with-xmlrpc \
+	--with-openssl \
+	--with-mhash \
+	--with-mcrypt \
+	--with-xsl \
+	--with-curl \
+	--with-pcre-regex \
+	--with-gd=shared \
+	--with-freetype-dir=/usr/lib/x86_64-linux-gnu/ \
+	--with-config-file-path=/usr/local/etc/php/cgi \
+	--with-config-file-scan-dir=/usr/local/etc/php/mods-available\ 
 make  
 make install
 cd $execPath
