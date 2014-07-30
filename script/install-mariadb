@@ -1,7 +1,6 @@
 #!/bin/bash
 execPath=$(readlink -f $(dirname $0))
 apt-get build-dep mysql-5.5 -y
-apt-get install -y git
 echo -e "$JAUNE""creation des dossier de MariaDB""$NORMAL"
 mkdir /usr/local/mysql
 mkdir /var/run/mysqld
@@ -31,14 +30,7 @@ cp ../config/mariadb/mysql_secure_installation /usr/local/mysql/bin/mysql_secure
 chmod +x /usr/local/mysql/bin/mysql_secure_installation
 cp ../config/mariadb/my.cnf /usr/local/mysql/my.cnf
 chown -R mysql:mysql /usr/local/mysql
-#étape de fin, lancement de la sécurisation de base de mariadb-serveur, garder cette étape le plus bas possible en cas de modification du script
-#l'utilisateur doit pouvoir laisser la machine faire le plus d'actions elle même possible
 /etc/init.d/mysqld start
 sleep 5
-#Appuyer sur entrée directement pour le mot de passe root
-#Répondre y à "Set root password ?" et indiquer 2 fois le mot de passe
-#Répondre y à "Remove anonymous users ?"
-#Répondre n à "Disallow root login remotely?" nous bloqueront ceci plus tard manuellement une fois tous les utilisateurs créé
-#Répondre y à "Remove test database and acces to it?"
-#Répondre y à "Reload privilege tables now?" 
+
 exit 0
