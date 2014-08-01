@@ -5,6 +5,15 @@ JAUNE="\\033[1;33m"
 ROUGE="\\033[1;31m"
 execPath=$(readlink -f $(dirname $0))
 source "$(pwd)/spinner"
+install-minimal(){
+	apt-get update
+	apt-get upgrade -y
+	apt-get install -y wget #wget  is not installed on a minimal debootstrap
+}
+install-prerequi(){
+	start_spinner 'instalation des prerequis et mise à jours'
+	install-minimal &> $execPath/log/prerequi.log
+	stop_spinner $?
 install-n() {
 	bash $execPath/script/install-nginx &> $execPath/log/install-nginx.log 
 }
@@ -121,12 +130,12 @@ done
 while true; do
 	read -p "Voulez vous installer tout les programmes  ?  [y/N]" yn
 		case $yn in
-		[Yy]* ) install-1; install-2; install-3; install-sw;install-5; sleep 5; secu-m; insserv  php-fpm; insserv  mysqld; insserv  nginx; exit ;;
+		[Yy]* )  install-prerequi; install-1; install-2; install-3; install-sw;install-5; sleep 5; secu-m; insserv  php-fpm; insserv  mysqld; insserv  nginx; exit ;;
 		[Nn]* )  break ;;
 		* ) echo "Il faut taper Y ou N!";;
 	esac
 done
-
+install-prerequi
 while true; do
 	read -p "Voulez vous installez nginx ?  [y/N]" yn
 		case $yn in
