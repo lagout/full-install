@@ -14,6 +14,7 @@ install-prerequi(){
 	start_spinner 'instalation des prerequis et mise à jours'
 	install-minimal &> $execPath/log/prerequi.log
 	stop_spinner $?
+}
 install-n() {
 	bash $execPath/script/install-nginx &> $execPath/log/install-nginx.log 
 }
