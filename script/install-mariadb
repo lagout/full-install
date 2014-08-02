@@ -1,36 +1,42 @@
 #!/bin/bash
 execPath=$(readlink -f $(dirname $0))
 apt-get build-dep mysql-5.5 -y
-echo "creation des dossier de MariaDB"
+	echo "creation des dossier de MariaDB"
 mkdir /usr/local/mysql
 mkdir /var/run/mysqld
 mkdir /usr/src/maria
-echo  "copie du depot en locale et compilation"
+	echo  "copie du depot en locale et compilation"
+	
 cd /usr/src/maria 
-git clone https://github.com/MariaDB/server # copie du depot en locale 
+	git clone https://github.com/MariaDB/server # copie du depot en locale 
 cd /usr/src/maria/server 
-BUILD/autorun.sh
-./configure
-make verbose=1
-make install
+	BUILD/autorun.sh
+	./configure
+	make verbose=1
+	make install
+
 #Création de l'utilisateur MariaDB, garder l'id entre 750 et 900 par précaution
 echo "création de l utilisateur et copie des fichier de congiguration"
 useradd -c mysql -d /usr/local/mysql -M -r -s /bin/false -u 750  mysql
-chown mysql:mysql /usr/local/mysql #rendre mysql proprio avec le groupe mysql
-chown mysql:root /var/run/mysqld  #rendre mysql proprio avec le groupe root
-mkdir -p /usr/local/mysql/data/{InnoDB,bdd}
+	chown mysql:mysql /usr/local/mysql #rendre mysql proprio avec le groupe mysql
+	chown mysql:root /var/run/mysqld  #rendre mysql proprio avec le groupe root
+	mkdir -p /usr/local/mysql/data/{InnoDB,bdd}
+	
 cd /usr/local/mysql
-/usr/local/mysql/scripts/mysql_install_db --user=mysql --no-defaults
-cd $execPath
+	/usr/local/mysql/scripts/mysql_install_db --user=mysql --no-defaults
+	cd $execPath
+	
 cp ../config/mariadb/mysqld /etc/init.d/mysqld
-chmod +x /etc/init.d/mysqld
-mv /etc/mysql/my.cnf /etc/mysql/my.cnf.default
-mv /usr/local/mysql/bin/mysql_secure_installation /usr/local/mysql/bin/mysql_secure_installation.hold
+	chmod +x /etc/init.d/mysqld
+	mv /etc/mysql/my.cnf /etc/mysql/my.cnf.default
+	mv /usr/local/mysql/bin/mysql_secure_installation /usr/local/mysql/bin/mysql_secure_installation.hold
+	
 cp ../config/mariadb/mysql_secure_installation /usr/local/mysql/bin/mysql_secure_installation
-chmod +x /usr/local/mysql/bin/mysql_secure_installation
+	chmod +x /usr/local/mysql/bin/mysql_secure_installation
+	
 cp ../config/mariadb/my.cnf /usr/local/mysql/my.cnf
-chown -R mysql:mysql /usr/local/mysql
-/etc/init.d/mysqld start
+	chown -R mysql:mysql /usr/local/mysql
+	/etc/init.d/mysqld start
 sleep 5
 
 exit 0

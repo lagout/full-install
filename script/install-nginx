@@ -2,19 +2,20 @@
 execPath=$(readlink -f $(dirname $0))
 apt-get -y install libpcre3-dev libssl-dev build-essential autoconf libtool
 echo  "creation des dossier de nginx"
-mkdir -p /usr/local/nginx/{conf.d,sites-available,sites-enabled}
-mkdir /var/log/nginx
-mkdir -p /var/lib/nginx/{body,proxy,fastcgi}
-mkdir -p /var/cache/nginx/{tmp,cached}
+	mkdir -p /usr/local/nginx/{conf.d,sites-available,sites-enabled}
+	mkdir /var/log/nginx
+	mkdir -p /var/lib/nginx/{body,proxy,fastcgi}
+	mkdir -p /var/cache/nginx/{tmp,cached}
+	
 echo "création de utilisateur nginx"
-useradd -c nginx -d /usr/local/nginx -M -r -s /bin/false -u 755  nginx
-cd /usr/src/
-mkdir /usr/src/nginx
+	useradd -c nginx -d /usr/local/nginx -M -r -s /bin/false -u 755  nginx
+mkdir -p /usr/src/nginx
 cd /usr/src/nginx 
 echo "télechargement et compilation"
-wget http://nginx.org/download/nginx-1.6.0.tar.gz -O nginx.tar.gz
-tar zxvf nginx.tar.gz
+	wget http://nginx.org/download/nginx-1.6.0.tar.gz -O nginx.tar.gz
+	tar zxvf nginx.tar.gz
 cd  nginx-1.6.0
+
 ./configure --prefix=/usr/local/nginx \
 	--conf-path=/usr/local/nginx/nginx.conf \
 	--http-log-path=/var/log/nginx/access_log \
@@ -37,21 +38,23 @@ cd  nginx-1.6.0
 	--without-mail_smtp_module \
 	--with-http_degradation_module \
 	--with-debug 
-make 
-make install
+	
+make && make install
 cd $execPath
-cp ../config/nginx/nginx  /etc/init.d/nginx
-cp ../config/nginx/logorate-nginx /etc/logrotate.d/nginx
+	cp ../config/nginx/nginx  /etc/init.d/nginx
+	cp ../config/nginx/logorate-nginx /etc/logrotate.d/nginx
+
 mv  /usr/local/nginx/fastcgi.conf /usr/local/nginx/fastcgi.conf.defauflt
 mv  /usr/local/nginx/fastcgi_params /usr/local/nginx/fastcgi_params.defauflt
 mv /usr/local/nginx/nginx.conf /usr/local/nginx/nginx.conf.defauflt
-cp ../config/nginx/fastcgi.conf /usr/local/nginx/fastcgi.conf
-cp ../config/nginx/fastcgi_params /usr/local/nginx/fastcgi_params
-cp ../config/nginx/nginx.conf /usr/local/nginx/nginx.conf
+	cp ../config/nginx/fastcgi.conf /usr/local/nginx/fastcgi.conf
+	cp ../config/nginx/fastcgi_params /usr/local/nginx/fastcgi_params
+	cp ../config/nginx/nginx.conf /usr/local/nginx/nginx.conf
+
 chown -R nginx /usr/local/nginx/
 chown root:root /etc/logrotate.d/nginx
-chmod +x /etc/init.d/nginx
-/etc/init.d/nginx start
+	chmod +x /etc/init.d/nginx
+	/etc/init.d/nginx start
 sleep 10
 
 exit 0
