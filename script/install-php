@@ -5,10 +5,12 @@ echo  "instalation des dependences "
 apt-get install -y build-essential autoconf libtool libxml2 libxml2-dev openssl libcurl4-openssl-dev libbz2-1.0 libbz2-dev libjpeg-dev libpng12-dev libfreetype6 libfreetype6-dev libldap-2.4-2 libldap2-dev libmcrypt4 libmcrypt-dev libmysqlclient-dev libxslt1.1 libxslt1-dev libxt-dev libfreetype6 libicu-dev
 #compilation de php
 echo  "compilation de php"
-mkdir /usr/src/php 
+	mkdir /usr/src/php
+ 
 cd /usr/src/php 
-wget http://be2.php.net/distributions/php-5.5.15.tar.gz
-tar zxvf php-5.5.15.tar.gz 
+	wget http://be2.php.net/distributions/php-5.5.15.tar.gz
+	tar zxvf php-5.5.15.tar.gz 
+
 cd php-5.5.15
 ./configure  --enable-fpm \
 	--with-fpm-user=nginx \
@@ -43,13 +45,15 @@ cd php-5.5.15
 	--with-gd=shared \
 	--with-freetype-dir=/usr/lib/x86_64-linux-gnu/ \
 	--with-config-file-path=/usr/local/etc/php/cgi \
-	--with-config-file-scan-dir=/usr/local/etc/php/mods-available\ 
-make  
-make install
+	--with-config-file-scan-dir=/usr/local/etc/php/mods-available
+
+make  && make install
+
 cd $execPath
-cp  -r ../config/php/php5 /usr/local/etc/php
-cp ../config/php/init.d.php-fpm /etc/init.d/php-fpm
-chmod +x /etc/init.d/php-fpm
+	cp  -r ../config/php/php5 /usr/local/etc/php
+	cp ../config/php/init.d.php-fpm /etc/init.d/php-fpm
+	chmod +x /etc/init.d/php-fpm
+
 sleep 10
 
 exit 0
