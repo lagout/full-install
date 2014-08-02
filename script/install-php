@@ -1,14 +1,10 @@
 #!/bin/bash
-NORMAL="\\033[0;32m"
-#normal = vert
-JAUNE="\\033[1;33m"
-ROUGE="\\033[1;31m"
 execPath=$(readlink -f $(dirname $0))
 #les dependence php
-echo -e "$JAUNE""instalation des dependences ""$NORMAL"
+echo  "instalation des dependences "
 apt-get install -y build-essential autoconf libtool libxml2 libxml2-dev openssl libcurl4-openssl-dev libbz2-1.0 libbz2-dev libjpeg-dev libpng12-dev libfreetype6 libfreetype6-dev libldap-2.4-2 libldap2-dev libmcrypt4 libmcrypt-dev libmysqlclient-dev libxslt1.1 libxslt1-dev libxt-dev libfreetype6 libicu-dev
 #compilation de php
-echo -e "$JAUNE""compilation de php""$NORMAL"
+echo  "compilation de php"
 mkdir /usr/src/php 
 cd /usr/src/php 
 wget http://be2.php.net/distributions/php-5.5.15.tar.gz
