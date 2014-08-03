@@ -1,7 +1,7 @@
 #!/bin/bash
 execPath=$(readlink -f $(dirname $0))
 apt-get -y install libpcre3-dev libssl-dev build-essential autoconf libtool
-echo  "create nginx's directories"
+echo  "creating  nginx's directories"
 	mkdir -p /usr/local/nginx/{conf.d,sites-available,sites-enabled}
 	mkdir /var/log/nginx
 	mkdir -p /var/lib/nginx/{body,proxy,fastcgi}

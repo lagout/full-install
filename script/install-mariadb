@@ -1,7 +1,7 @@
 #!/bin/bash
 execPath=$(readlink -f $(dirname $0))
 apt-get build-dep mysql-5.5 -y
-	echo "create MariaDB's directories"
+	echo "creating MariaDB's directories"
 mkdir /usr/local/mysql
 mkdir /var/run/mysqld
 mkdir /usr/src/maria
