@@ -1,17 +1,17 @@
 #!/bin/bash
 execPath=$(readlink -f $(dirname $0))
 apt-get -y install libpcre3-dev libssl-dev build-essential autoconf libtool
-echo  "creation des dossier de nginx"
+echo  "create nginx's directories"
 	mkdir -p /usr/local/nginx/{conf.d,sites-available,sites-enabled}
 	mkdir /var/log/nginx
 	mkdir -p /var/lib/nginx/{body,proxy,fastcgi}
 	mkdir -p /var/cache/nginx/{tmp,cached}
 	
-echo "création de utilisateur nginx"
+echo "Creating user nginx"
 	useradd -c nginx -d /usr/local/nginx -M -r -s /bin/false -u 755  nginx
 mkdir -p /usr/src/nginx
 cd /usr/src/nginx 
-echo "télechargement et compilation"
+echo "download and compilation"
 	wget http://nginx.org/download/nginx-1.6.0.tar.gz -O nginx.tar.gz
 	tar zxvf nginx.tar.gz
 cd  nginx-1.6.0
