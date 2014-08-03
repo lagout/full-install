@@ -1,25 +1,25 @@
 #!/bin/bash
 execPath=$(readlink -f $(dirname $0))
 apt-get build-dep mysql-5.5 -y
-	echo "creation des dossier de MariaDB"
+	echo "create MariaDB's directories"
 mkdir /usr/local/mysql
 mkdir /var/run/mysqld
 mkdir /usr/src/maria
-	echo  "copie du depot en locale et compilation"
+	echo  "copy repository in  /usr/src/maria and compilation"
 	
 cd /usr/src/maria 
-	git clone https://github.com/MariaDB/server # copie du depot en locale 
+	git clone https://github.com/MariaDB/server # copy repository in  /usr/src/maria
 cd /usr/src/maria/server 
 	BUILD/autorun.sh
 	./configure
 	make verbose=1
 	make install
 
-#Création de l'utilisateur MariaDB, garder l'id entre 750 et 900 par précaution
-echo "création de l utilisateur et copie des fichier de congiguration"
+# Creating user MariaDB, keep the id between 750 and 900 by carefully
+echo "Creating user MariaDB and copying configuration files"
 useradd -c mysql -d /usr/local/mysql -M -r -s /bin/false -u 750  mysql
-	chown mysql:mysql /usr/local/mysql #rendre mysql proprio avec le groupe mysql
-	chown mysql:root /var/run/mysqld  #rendre mysql proprio avec le groupe root
+	chown mysql:mysql /usr/local/mysql #allow owner mysql to group mysql
+	chown mysql:root /var/run/mysqld  #allow owner mysql to group root
 	mkdir -p /usr/local/mysql/data/{InnoDB,bdd}
 	
 cd /usr/local/mysql
