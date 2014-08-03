@@ -116,11 +116,11 @@ echo -e "$ROUGE""# This script install:                                  #"
 echo -e "$ROUGE""#                php : 5.5.14                           #"
 echo -e "$ROUGE""#            MariaDB : 5.5                              #"
 echo -e "$ROUGE""#              nginx : 1.6.0                            #"
-echo -e "$ROUGE""#   Install logs can be found in /full-install/log      #"
+echo -e "$ROUGE""#   Install logs can be found in ./full-install/log     #"
 echo -e "$ROUGE""#########################################################"
 echo -e "$JAUNE""Warning this install can run some time""$NORMAL"
 while true; do
-	read -p "Confirme install [Y/N]: " -n 2 confirme
+	read -p "Confirm install [Y/N]: " -n 2 confirme
 		case $confirme in
 			[Yy]* ) break;;
 			[Nn]* ) aborted; exit;;
