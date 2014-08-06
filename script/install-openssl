@@ -1,0 +1,20 @@
+#!/bin/bash
+apt-get build-dep openssl -y
+mkdir /usr/src/ssl
+cd /usr/src/ssl
+wget http://www.linuxfromscratch.org/patches/blfs/svn/openssl-1.0.1h-fix_parallel_build-1.patch
+wget http://www.openssl.org/source/openssl-1.0.1h.tar.gz
+tar xvf openssl-1.0.1h.tar.gz
+cd openssl-1.0.1h
+patch -Np1 -i ../openssl-1.0.1h-fix_parallel_build-1.patch &&
+
+./config --prefix=/usr         \
+         --openssldir=/etc/ssl \
+         --libdir=lib          \
+         shared                \
+         zlib-dynamic &&
+make
+make install
+apt-get install ca-certificates -y
+
+

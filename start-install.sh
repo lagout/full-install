@@ -24,6 +24,11 @@ install-p() {
 install-m() {
 	bash $execPath/script/install-mariadb &> $execPath/log/install-mariadb.log 
 }
+install-ssl(){
+	start_spinner 'Install openssl in progress'
+	bash $execPath/script/install-openssl &> $execPath/log/install-openssl.log
+	stop_spinner $?
+}
 install-swift() {
 	php -r "readfile('https://getcomposer.org/installer');" | php -- --install-dir=/usr/local/bin/
 	mv /usr/local/bin/composer.phar /usr/local/bin/composer
@@ -113,7 +118,7 @@ then
 fi
 echo -e "$ROUGE""#########################################################"
 echo -e "$ROUGE""# This script install:                                  #"
-echo -e "$ROUGE""#                php : 5.5.14                           #"
+echo -e "$ROUGE""#                php : 5.5.15                           #"
 echo -e "$ROUGE""#            MariaDB : 5.5                              #"
 echo -e "$ROUGE""#              nginx : 1.6.0                            #"
 echo -e "$ROUGE""#   Install logs can be found in ./full-install/log     #"
@@ -130,12 +135,20 @@ done
 while true; do
 	read -p "Want to  install all  ?  [y/N]" yn
 		case $yn in
-		[Yy]* )  install-prerequi; install-1; install-2; install-3; install-sw;install-5; sleep 5; secu-m; insserv  php-fpm; insserv  mysqld; insserv  nginx; exit ;;
+		[Yy]* )  install-prerequi; install-ssl; install-1; install-2; install-3; install-sw;install-5; sleep 5; secu-m; insserv  php-fpm; insserv  mysqld; insserv  nginx; exit ;;
 		[Nn]* )  break ;;
 		* ) echo "Type Y or N!";;
 	esac
 done
 install-prerequi
+while true; do
+	read -p "Want to  install openssl ?  [y/N]" yn
+		case $yn in
+		[Yy]* ) install-ssl; break ;;
+		[Nn]* ) aborted; break ;;
+		* ) echo "Type Y or N!";;
+	esac
+done
 while true; do
 	read -p "Want to  install nginx ?  [y/N]" yn
 		case $yn in
