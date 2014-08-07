@@ -8,7 +8,7 @@ source "$(pwd)/spinner"
 install-minimal(){
 	apt-get update
 	apt-get upgrade -y
-	apt-get install -y wget #wget  is not installed on a minimal debootstrap
+	apt-get install -y wget zlib1g #wget  is not installed on a minimal debootstrap
 }
 install-prerequi(){
 	start_spinner 'Instaling dependancies and update '
