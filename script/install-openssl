@@ -15,5 +15,8 @@ patch -Np1 -i ../openssl-1.0.1h-fix_parallel_build-1.patch &&
          zlib-dynamic &&
 make
 make install
+bash ca-cert-install
+
+exit 0
 
 

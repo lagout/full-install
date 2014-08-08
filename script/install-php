@@ -2,7 +2,7 @@
 execPath=$(readlink -f $(dirname $0))
 #les dependence php
 echo  "instaling dependancies "
-apt-get install -y build-essential ca-certificates autoconf libtool libxml2 libxml2-dev  libcurl4-gnutls-dev libbz2-1.0 libbz2-dev libjpeg-dev libpng12-dev libfreetype6 libfreetype6-dev libldap-2.4-2 libldap2-dev libmcrypt4 libmcrypt-dev libmysqlclient-dev libxslt1.1 libxslt1-dev libxt-dev libfreetype6 libicu-dev
+apt-get install -y build-essential  autoconf libtool libxml2 libxml2-dev  libcurl4-gnutls-dev libbz2-1.0 libbz2-dev libjpeg-dev libpng12-dev libfreetype6 libfreetype6-dev libldap-2.4-2 libldap2-dev libmcrypt4 libmcrypt-dev libmysqlclient-dev libxslt1.1 libxslt1-dev libxt-dev libfreetype6 libicu-dev
 #compilation de php
 echo  "compilation of php"
 	mkdir /usr/src/php
