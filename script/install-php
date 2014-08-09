@@ -36,7 +36,7 @@ cd php-5.5.15
 	--with-bz2 \
 	--with-gettext \
 	--with-xmlrpc \
-	--with-openssl=/usr/local/ssl \
+	--with-openssl=/usr \
 	--with-mhash \
 	--with-mcrypt \
 	--with-xsl \
