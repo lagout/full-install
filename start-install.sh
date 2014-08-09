@@ -9,6 +9,7 @@ install-minimal(){
 	apt-get update
 	apt-get upgrade -y
 	apt-get install -y wget zlib1g #wget  is not installed on a minimal debootstrap
+	apt-get purge openssl -y
 }
 install-prerequi(){
 	start_spinner 'Instaling dependancies and update '
