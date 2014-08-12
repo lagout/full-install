@@ -1,7 +1,6 @@
 #!/bin/bash
 execPath=$(readlink -f $(dirname $0))
 apt-get build-dep openssl -y
-dpkg -r --force-depends libssl1.0.0
 mkdir /usr/src/ssl
 cd /usr/src/ssl
 wget http://www.openssl.org/source/openssl-1.0.1i.tar.gz
