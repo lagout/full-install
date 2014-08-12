@@ -10,7 +10,6 @@ install-minimal(){
 	apt-get upgrade -y
 	apt-get install -y wget zlib1g #wget  is not installed on a minimal debootstrap
 	apt-get purge openssl -y
-	dpkg -r --force-depends libssl1.0.0
 }
 install-prerequi(){
 	start_spinner 'Instaling dependancies and update '
