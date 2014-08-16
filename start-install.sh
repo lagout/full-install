@@ -8,7 +8,7 @@ source "$(pwd)/spinner"
 install-minimal(){
 	apt-get update
 	apt-get upgrade -y
-	apt-get install -y wget zlib1g #wget  is not installed on a minimal debootstrap
+	apt-get install -y wget zlib1g make #wget  is not installed on a minimal debootstrap
 	apt-get purge openssl -y
 }
 install-prerequi(){
