@@ -5,6 +5,15 @@ JAUNE="\\033[1;33m"
 ROUGE="\\033[1;31m"
 execPath=$(readlink -f $(dirname $0))
 source "$(pwd)/spinner"
+if [ -z "$(cat /proc/version | grep Debian)" ] || [ -z "$(cat /etc/issue | grep Debian)" ]; then
+echo
+echo -e "${ROUGE}" "This script is ONLY meant for Debian!"
+echo -e  "${ROUGE}" "This is not Debian!"
+echo
+read -p "Press any key to quit..." -n 1
+echo
+exit
+fi
 install-minimal(){
 	apt-get update
 	apt-get upgrade -y
