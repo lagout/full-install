@@ -16,15 +16,6 @@ install-prerequi(){
 	install-minimal &> $execPath/log/prerequi.log
 	stop_spinner $?
 }
-install-n() {
-	bash $execPath/script/install-nginx &> $execPath/log/install-nginx.log 
-}
-install-p() {
-	bash $execPath/script/install-php &> $execPath/log/install-php.log 
-}
-install-m() {
-	bash $execPath/script/install-mariadb &> $execPath/log/install-mariadb.log 
-}
 install-ssl(){
 	start_spinner 'Install openssl in progress'
 	bash $execPath/script/install-openssl &> $execPath/log/install-openssl.log
@@ -54,12 +45,12 @@ install-sw() {
 }
 install-1() {
 	start_spinner 'Install nginx in progress'
-	install-n
+	bash $execPath/script/install-nginx &> $execPath/log/install-nginx.log
 	stop_spinner $?
 }
 install-2() {
 	start_spinner 'Install php in progress'
-	install-p
+	bash $execPath/script/install-php &> $execPath/log/install-php.log
 	stop_spinner $?
 }
 install-ph-ext(){
@@ -99,7 +90,7 @@ install-4() {
 }
 install-5() {
 	start_spinner 'install MariaDB in progress'
-	install-m
+	bash $execPath/script/install-mariadb &> $execPath/log/install-mariadb.log
 	stop_spinner $?
 }
 secu-m () {
