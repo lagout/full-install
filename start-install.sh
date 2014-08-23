@@ -86,9 +86,10 @@ then
 fi
 echo -e "$ROUGE""#########################################################"
 echo -e "$ROUGE""# This script install:                                  #"
-echo -e "$ROUGE""#                php : 5.5.15                           #"
-echo -e "$ROUGE""#            MariaDB : 5.5                              #"
-echo -e "$ROUGE""#              nginx : 1.6.0                            #"
+echo -e "$ROUGE""#            openssl : 1.0.1i                           #"
+echo -e "$ROUGE""#                php : 5.5.16                           #"
+echo -e "$ROUGE""#            MariaDB : 10.1.1                           #"
+echo -e "$ROUGE""#              nginx : 1.6.1                            #"
 echo -e "$ROUGE""#   Install logs can be found in ./full-install/log     #"
 echo -e "$ROUGE""#########################################################"
 echo -e "$JAUNE""Warning this install can run some time""$NORMAL"
