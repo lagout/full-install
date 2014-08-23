@@ -21,15 +21,6 @@ install-ssl(){
 	bash $execPath/script/install-openssl &> $execPath/log/install-openssl.log
 	stop_spinner $?
 }
-install-swift() {
-	php -r "readfile('https://getcomposer.org/installer');" | php -- --install-dir=/usr/local/bin/
-	mv /usr/local/bin/composer.phar /usr/local/bin/composer
-	echo -e "$ROUGE"" Creating composer command""$NORMAL"
-	cd /usr/local/nginx/html
-	mkdir lib
-	cd lib
-	composer require swiftmailer/swiftmailer @stable
-}
 aborted(){
 	echo -e "$ROUGE""Install aborted""$NORMAL"
 }
@@ -37,11 +28,6 @@ conf-a(){
 	echo -e "$ROUGE""MariaDB configuration aborted"
 	echo -e "$ROUGE""use /usr/local/mysql/bin/mysql_secure_installation "
 	echo -e "$ROUGE""to configure""$NORMAL"
-}
-install-sw() {
-	start_spinner 'Install swiftmailer in progress'
-	install-swift &>> $execPath/log/install-php.log
-	stop_spinner $?
 }
 install-1() {
 	start_spinner 'Install nginx in progress'
@@ -77,16 +63,6 @@ install-3(){
 	echo -e "$JAUNE""Making xdebug alvaible to php""$NORMAL"
 	cp $execPath/config/php/extention/xdebug.ini /usr/local/etc/php/mods-available/xdebug.ini
 	/etc/init.d/php-fpm start
-}
-install-4() { 
-	while true; do
-		read -p "Want to install swiftmailer ?  [y/N]" yn
-			case $yn in
-			[Yy]* ) install-sw; break ;;
-			[Nn]* ) aborted; break ;;
-			* ) echo "Type Y or N!";;
-		esac
-	done
 }
 install-5() {
 	start_spinner 'install MariaDB in progress'
@@ -127,7 +103,7 @@ done
 while true; do
 	read -p "Want to  install all  ?  [y/N]" yn
 		case $yn in
-		[Yy]* )  install-prerequi; install-ssl; install-1; install-2; install-3; install-sw;install-5; sleep 5; secu-m; insserv  php-fpm; insserv  mysqld; insserv  nginx; exit ;;
+		[Yy]* )  install-prerequi; install-ssl; install-1; install-2; install-3;install-5; sleep 5; secu-m; insserv  php-fpm; insserv  mysqld; insserv  nginx; exit ;;
 		[Nn]* )  break ;;
 		* ) echo "Type Y or N!";;
 	esac
@@ -152,7 +128,7 @@ done
 while true; do
 	read -p "Want to  install php ?  [y/N]" yn
 		case $yn in
-		[Yy]* ) install-2; install-3;install-4; insserv  php-fpm; break ;;
+		[Yy]* ) install-2; install-3; insserv  php-fpm; break ;;
 		[Nn]* ) aborted; break ;;
 		* ) echo "Type Y or N!";;
 	esac

@@ -8,10 +8,10 @@ echo  "compilation of php"
 	mkdir /usr/src/php
  
 cd /usr/src/php 
-	wget http://be2.php.net/distributions/php-5.5.15.tar.gz
-	tar zxvf php-5.5.15.tar.gz 
+	wget http://be2.php.net/distributions/php-5.5.16.tar.gz
+	tar zxvf php-5.5.16.tar.gz 
 
-cd php-5.5.15
+cd php-5.5.16
 ./configure  --enable-fpm \
 	--with-fpm-user=nginx \
 	--enable-pdo=shared \
