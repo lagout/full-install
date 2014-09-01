@@ -6,10 +6,11 @@ mkdir /usr/local/mysql
 mkdir /var/run/mysqld
 mkdir /usr/src/maria
 	echo  "copy repository in  /usr/src/maria and compilation"
-	
 cd /usr/src/maria 
-	git clone https://github.com/MariaDB/server # copy repository in  /usr/src/maria
-cd /usr/src/maria/server 
+	 # copy repository in  /usr/src/maria
+wget http://mariadb.cu.be//mariadb-galera-5.5.39/source/mariadb-galera-5.5.39.tar.gz
+	tar zxvf mariadb-galera-5.5.39.tar.gz
+cd /usr/src/maria/mariadb-galera-5.5.39
 	BUILD/autorun.sh
 	./configure
 	make verbose=1
