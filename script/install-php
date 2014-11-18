@@ -8,10 +8,10 @@ echo  "compilation of php"
 	mkdir /usr/src/php
  
 cd /usr/src/php 
-	wget http://be2.php.net/distributions/php-5.5.18.tar.gz
-	tar zxvf php-5.5.18.tar.gz 
+	wget http://be2.php.net/distributions/php-5.5.19.tar.gz
+	tar zxvf php-5.5.19.tar.gz 
 
-cd php-5.5.18
+cd php-5.5.19
 ./configure  --enable-fpm \
 	--with-fpm-user=nginx \
 	--enable-pdo=shared \
@@ -47,7 +47,21 @@ cd php-5.5.18
 	--with-config-file-path=/usr/local/etc/php/cgi \
 	--with-config-file-scan-dir=/usr/local/etc/php/mods-available
 
-make  && make install
+make  
+
+checkinstall -D -y \
+	--install=no \
+	--fstrans=no \
+	--reset-uids=yes \
+	--pkgname=php-fpm \
+	--pkgversion=5.5.19 \
+	--pkglicense=GPL \
+	--pakdir=/usr/src/deb  \
+	--maintainer="lagout " \
+	--nodoc
+
+cd /usr/src/deb
+dpkg -i php-fpm*.deb
 
 cd $execPath
 	cp  -r ../config/php/php5 /usr/local/etc/php

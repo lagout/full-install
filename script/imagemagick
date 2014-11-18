@@ -5,4 +5,17 @@ tar xvf ImageMagick-6.9.0-0.tar.gz
 cd ImageMagick-6.9.0-0/
 ./configure --with-modules \--with-imagick=/opt/local
 make
-make install
+checkinstall -D -y \
+  --install=no \
+  --fstrans=no \
+  --reset-uids=yes \
+  --pkgname=imagemagick \
+  --pkgversion=6.9.0-0 \
+  --pkglicense=GPL \
+  --maintainer="lagout " \
+  --pakdir=/usr/src/deb \
+  --nodoc
+
+cd /usr/src/deb
+
+dpkg -i imagemagick*.deb

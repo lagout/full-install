@@ -13,9 +13,23 @@ cd openssl-1.0.1j
          shared                \
          zlib-dynamic &&
 make
-make install
+checkinstall -D -y \
+	--install=no \
+	--fstrans=no \
+	--reset-uids=yes \
+	--pkgname=openssl \
+	--pkgversion=1.0.1j \
+	--pkglicense=GPL \
+	 --pakdir=/usr/src/deb  \
+	--maintainer="lagout " \
+	--nodoc
+
+cd /usr/src/deb
+
+dpkg -i openssl*.deb
+
 bash $execPath/ca-cert-nstall
 
-exit 0
+exit 
 
 
