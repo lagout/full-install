@@ -8,8 +8,9 @@ source "$(pwd)/spinner"
 install-minimal(){
 	apt-get update
 	apt-get upgrade -y
-	apt-get install -y wget zlib1g make #wget  is not installed on a minimal debootstrap
-	apt-get purge openssl -y
+	apt-get install -y wget zlib1g make checkinstall #wget  is not installed on a minimal debootstrap
+	apt-get purge openssl -
+	mkdir /usr/src/deb
 }
 install-prerequi(){
 	start_spinner 'Instaling dependancies and update '

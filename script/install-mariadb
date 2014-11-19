@@ -8,7 +8,7 @@ mkdir /usr/src/maria
 	echo  "copy repository in  /usr/src/maria and compilation"
 cd /usr/src/maria 
 	 # copy repository in  /usr/src/maria
-wget http://mariadb.cu.be//mariadb-galera-5.5.40/source/mariadb-galera-5.5.40.tar.gz
+wget http://mariadb.cu.be/mariadb-galera-5.5.40/source/mariadb-galera-5.5.40.tar.gz
 	tar zxvf mariadb-galera-5.5.40.tar.gz
 cd /usr/src/maria/mariadb-5.5.40
 	BUILD/autorun.sh
