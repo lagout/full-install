@@ -9,7 +9,7 @@ install-minimal(){
 	apt-get update
 	apt-get upgrade -y
 	apt-get install -y wget zlib1g make checkinstall #wget  is not installed on a minimal debootstrap
-	apt-get purge openssl -
+	apt-get purge openssl -y
 	mkdir /usr/src/deb
 }
 install-prerequi(){
