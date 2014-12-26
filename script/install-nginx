@@ -1,5 +1,9 @@
 #!/bin/bash
+core() {
+	cat /proc/cpuinfo | grep processor -c
+}
 execPath=$(readlink -f $(dirname $0))
+
 apt-get -y install libpcre3-dev  build-essential autoconf libtool
 echo  "creating  nginx's directories"
 	mkdir -p /usr/local/nginx/{conf.d,sites-available,sites-enabled}
@@ -39,7 +43,7 @@ cd  nginx-1.6.2
 	--with-http_degradation_module \
 	--with-debug 
 	
-make 
+make -j $core
 checkinstall -D -y \
 	--install=no \
 	--fstrans=no \

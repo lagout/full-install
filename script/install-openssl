@@ -1,5 +1,9 @@
 #!/bin/bash
+core() {
+	cat /proc/cpuinfo | grep processor -c
+}
 execPath=$(readlink -f $(dirname $0))
+
 apt-get build-dep openssl -y
 mkdir /usr/src/ssl
 cd /usr/src/ssl
@@ -12,7 +16,7 @@ cd openssl-1.0.1j
          --openssldir=/etc/ssl \
          shared                \
          zlib-dynamic &&
-make
+make -j $core
 checkinstall -D -y \
 	--install=no \
 	--fstrans=no \
