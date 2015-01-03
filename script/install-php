@@ -1,7 +1,4 @@
 #!/bin/bash
-core() {
-	cat /proc/cpuinfo | grep processor -c
-}
 execPath=$(readlink -f $(dirname $0))
 #les dependence php
 echo  "instaling dependancies "
@@ -50,7 +47,7 @@ cd php-5.5.20
 	--with-config-file-path=/usr/local/etc/php/cgi \
 	--with-config-file-scan-dir=/usr/local/etc/php/mods-available
 
-make  -j $core
+make  
 
 checkinstall -D -y \
 	--install=no \
