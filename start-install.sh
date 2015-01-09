@@ -87,7 +87,7 @@ then
 fi
 echo -e "$ROUGE""#########################################################"
 echo -e "$ROUGE""# This script install:                                  #"
-echo -e "$ROUGE""#            openssl : 1.0.1j                           #"
+echo -e "$ROUGE""#            openssl : 1.0.1k                           #"
 echo -e "$ROUGE""#                php : 5.5.20                           #"
 echo -e "$ROUGE""#            MariaDB : 5.5.40                           #"
 echo -e "$ROUGE""#              nginx : 1.6.2                            #"
