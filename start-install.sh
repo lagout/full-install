@@ -41,13 +41,12 @@ install-2() {
 	stop_spinner $?
 }
 install-ph-ext(){
-	start_spinner 'Install imagick dependancies in progress'
+	start_spinner 'Install imagemagick'
 	bash $execPath/script/imagemagick &>> $execPath/log/install-php.log
 	stop_spinner $?
 }
 install-3(){
 	echo -e "$JAUNE""Install imagik / intl / xdebug (php add-on)""$NORMAL"
-	install-ph-ext
 	pear channel-update pear.php.net
 	pecl channel-update pecl.php.net
 	echo -e "$JAUNE""install imagick""$NORMAL"
@@ -105,7 +104,7 @@ done
 while true; do
 	read -p "Want to  install all  ?  [y/N]" yn
 		case $yn in
-		[Yy]* )  install-prerequi; install-ssl; install-1; install-2; install-3;install-5; sleep 5; secu-m; insserv  php-fpm; insserv  mysqld; insserv  nginx; exit ;;
+		[Yy]* )  install-prerequi; install-ssl; install-1;install-ph-ext; install-2; install-3;install-5; sleep 5; secu-m; insserv  php-fpm; insserv  mysqld; insserv  nginx; exit ;;
 		[Nn]* )  break ;;
 		* ) echo "Type Y or N!";;
 	esac
@@ -130,7 +129,7 @@ done
 while true; do
 	read -p "Want to  install php ?  [y/N]" yn
 		case $yn in
-		[Yy]* ) install-2; install-3; insserv  php-fpm; break ;;
+		[Yy]* ) install-ph-ext; install-2; install-3; insserv  php-fpm; break ;;
 		[Nn]* ) aborted; break ;;
 		* ) echo "Type Y or N!";;
 	esac
