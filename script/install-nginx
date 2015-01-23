@@ -1,7 +1,5 @@
 #!/bin/bash
-core() {
-	cat /proc/cpuinfo | grep processor -c
-}
+
 execPath=$(readlink -f $(dirname $0))
 
 apt-get -y install libpcre3-dev  build-essential autoconf libtool
@@ -43,7 +41,7 @@ cd  nginx-1.6.2
 	--with-http_degradation_module \
 	--with-debug 
 	
-make -j $core
+make -j 
 checkinstall -D -y \
 	--install=no \
 	--fstrans=no \

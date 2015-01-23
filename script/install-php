@@ -8,10 +8,10 @@ echo  "compilation of php"
 	mkdir /usr/src/php
  
 cd /usr/src/php 
-	wget http://be2.php.net/distributions/php-5.5.20.tar.gz
-	tar zxvf php-5.5.20.tar.gz 
+	wget http://be2.php.net/distributions/php-5.5.21.tar.gz
+	tar zxvf php-5.5.21.tar.gz 
 
-cd php-5.5.20
+cd php-5.5.21
 ./configure  --enable-fpm \
 	--with-fpm-user=nginx \
 	--enable-pdo=shared \
@@ -43,8 +43,10 @@ cd php-5.5.20
 	--with-curl \
 	--with-pcre-regex \
 	--with-gd=shared \
-	--with-freetype-dir=/usr/lib/x86_64-linux-gnu/ \
 	--with-config-file-path=/usr/local/etc/php/cgi \
+	--with-vpx-dir=/usr/lib/x86_64-linux-gnu/ \
+	--with-jpeg-dir=/usr/lib/x86_64-linux-gnu/ \
+	--with-freetype-dir=/usr/lib/x86_64-linux-gnu/ \
 	--with-config-file-scan-dir=/usr/local/etc/php/mods-available
 
 make  
