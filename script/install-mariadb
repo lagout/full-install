@@ -1,5 +1,8 @@
 #!/bin/bash
 execPath=$(readlink -f $(dirname $0))
+package(){
+	ls |grep mariadb
+}
 apt-get build-dep mysql-5.5 -y
 	echo "creating MariaDB's directories"
 mkdir /usr/local/mysql
@@ -26,7 +29,7 @@ cd /usr/src/maria/mariadb-5.5.40
 		--nodoc
 
 cd /usr/src/deb
-dpkg -i mariadb*.deb
+dpkg -i $package
 
 
 # Creating user MariaDB, keep the id between 750 and 900 by carefully

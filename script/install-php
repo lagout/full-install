@@ -1,8 +1,11 @@
 #!/bin/bash
 execPath=$(readlink -f $(dirname $0))
+package(){
+	ls |grep php-fpm
+}
 #les dependence php
 echo  "instaling dependancies "
-apt-get install -y build-essential  autoconf libtool libxml2 libxml2-dev  libcurl4-gnutls-dev libbz2-1.0 libbz2-dev libjpeg-dev libpng12-dev libfreetype6 libfreetype6-dev libldap-2.4-2 libldap2-dev libmcrypt4 libmcrypt-dev libmysqlclient-dev libxslt1.1 libxslt1-dev libxt-dev libfreetype6 libicu-dev libcurl3 libonig2 libqdbm14 libt1-5 libvpx1 libxpm4 libvpx-dev libxpm-dev
+apt-get install -y build-essential  autoconf libtool libxml2 libxml2-dev  libcurl4-gnutls-dev libbz2-1.0 libbz2-dev libjpeg-dev libpng12-dev libfreetype6 libfreetype6-dev libldap-2.4-2 libldap2-dev libmcrypt4 libmcrypt-dev libmysqlclient-dev libxslt1.1 libxslt1-dev libxt-dev libfreetype6 libicu-dev libcurl3 libonig2 libqdbm14 libt1-5 libvpx1 libxpm4 libvpx-dev libxpm-dev libgmp10 libgmp-dev
 #compilation de php
 echo  "compilation of php"
 	mkdir /usr/src/php
@@ -26,6 +29,9 @@ cd php-5.5.21
 	--enable-mbstring \
 	--enable-dba \
 	--enable-gd-native-ttf \
+	--with-gmp \
+	--enable-intl \
+	--with-png-dir=shared \
 	--enable-zip \
 	--enable-calendar \
 	--with-mysql=shared \
@@ -37,9 +43,21 @@ cd php-5.5.21
 	--with-gettext \
 	--with-xmlrpc \
 	--with-openssl=/usr \
-	--with-mhash \
-	--with-mcrypt \
+	-with-mhash \
+	-with-mcrypt \
 	--with-xsl \
+	--enable-zip \
+	--with-regex=php \
+	--with-pic \
+	--with-layout=GNU \
+	--enable-sysvsem \
+	--enable-sysvshm \
+	--with-mhash=yes \
+	--with-system-tzdata \
+	--enable-shmop \
+	--with-iconv \
+	--enable-exif \
+	--enable-sysvmsg \
 	--with-curl \
 	--with-pcre-regex \
 	--with-gd=shared \
@@ -57,14 +75,14 @@ checkinstall -D -y \
 	--fstrans=no \
 	--reset-uids=yes \
 	--pkgname=php-fpm \
-	--pkgversion=5.5.20 \
+	--pkgversion=5.5.21 \
 	--pkglicense=GPL \
 	--pakdir=/usr/src/deb  \
 	--maintainer="lagout " \
 	--nodoc
 
 cd /usr/src/deb
-dpkg -i php-fpm*.deb
+dpkg -i $package
 
 cd $execPath
 	cp  -r ../config/php/php5 /usr/local/etc/php

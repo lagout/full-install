@@ -1,6 +1,8 @@
 #!/bin/bash
-
 execPath=$(readlink -f $(dirname $0))
+package(){
+	ls |grep nginx
+}
 
 apt-get -y install libpcre3-dev  build-essential autoconf libtool
 echo  "creating  nginx's directories"
@@ -55,7 +57,7 @@ checkinstall -D -y \
 
 cd /usr/src/deb
 
-dpkg -i nginx*.deb
+dpkg -i $package
 
 cd $execPath
 	cp ../config/nginx/nginx  /etc/init.d/nginx

@@ -1,7 +1,8 @@
 #!/bin/bash
-
 execPath=$(readlink -f $(dirname $0))
-
+package(){
+	ls |grep openssl
+}
 apt-get build-dep openssl -y
 mkdir /usr/src/ssl
 cd /usr/src/ssl
@@ -20,7 +21,7 @@ checkinstall -D -y \
 	--fstrans=no \
 	--reset-uids=yes \
 	--pkgname=openssl \
-	--pkgversion=1.0.1j \
+	--pkgversion=1.0.1k \
 	--pkglicense=GPL \
 	 --pakdir=/usr/src/deb  \
 	--maintainer="lagout " \
@@ -28,7 +29,7 @@ checkinstall -D -y \
 
 cd /usr/src/deb
 
-dpkg -i openssl*.deb
+dpkg -i $package
 
 bash $execPath/ca-cert-nstall
 
