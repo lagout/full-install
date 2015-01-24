@@ -1,8 +1,5 @@
 #!/bin/bash
-package(){
-	cd /usr/src/deb
-	ls |grep imagemagick
-}
+
 
 
 cd /usr/src
@@ -25,4 +22,4 @@ checkinstall -D -y \
 
 cd /usr/src/deb
 
-dpkg -i $package
+dpkg -i imagemagick*.deb
