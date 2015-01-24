@@ -40,8 +40,8 @@ cd php-5.5.21
 	--with-gettext \
 	--with-xmlrpc \
 	--with-openssl=/usr \
-	-with-mhash \
-	-with-mcrypt \
+	--with-mhash \
+	--with-mcrypt \
 	--with-xsl \
 	--enable-zip \
 	--with-regex=php \
