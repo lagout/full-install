@@ -1,6 +1,7 @@
 #!/bin/bash
 execPath=$(readlink -f $(dirname $0))
 package(){
+	cd /usr/src/deb
 	ls |grep nginx
 }
 

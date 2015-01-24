@@ -1,5 +1,6 @@
 #!/bin/bash
 package(){
+	cd /usr/src/deb
 	ls |grep imagemagick
 }
 
