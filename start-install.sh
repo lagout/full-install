@@ -53,10 +53,6 @@ install-3(){
 	pecl install imagick 
 	cp $execPath/config/php/extention/imagik.ini /usr/local/etc/php/mods-available/imagik.ini
 	echo -e "$JAUNE""Making imagick alvaible to php""$NORMAL"
-	echo -e "$JAUNE"" install intl""$NORMAL"
-	pecl install intl
-	echo -e "$JAUNE""Making intl alvaible to php""$NORMAL"
-	cp $execPath/config/php/extention/intl.ini /usr/local/etc/php/mods-available/intl.ini
 	start_spinner 'install xdebug in progress'
 	pecl install xdebug &>> $execPath/log/install-php.log
 	stop_spinner $?
