@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /bin/sh
 execPath=$(readlink -f $(dirname $0))
 
 apt-get build-dep mysql-5.5 -y
@@ -9,7 +9,7 @@ mkdir /usr/src/maria
 	echo  "copy repository in  /usr/src/maria and compilation"
 cd /usr/src/maria 
 	 # copy repository in  /usr/src/maria
-wget http://mariadb.cu.be/mariadb-galera-5.5.40/source/mariadb-galera-5.5.40.tar.gz
+wget http://mariadb.cu.be/mariadb-galera-5.5.41/source/mariadb-galera-5.5.41.tar.gz
 	tar zxvf mariadb-galera-5.5.40.tar.gz
 cd /usr/src/maria/mariadb-5.5.40
 	BUILD/autorun.sh
@@ -54,4 +54,4 @@ cp ../config/mariadb/my.cnf /usr/local/mysql/my.cnf
 	/etc/init.d/mysqld start
 sleep 5
 
-exit 0
+

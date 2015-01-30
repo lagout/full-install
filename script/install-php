@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /bin/sh
 execPath=$(readlink -f $(dirname $0))
 #les dependence php
 echo  "instaling dependancies "
@@ -88,4 +88,4 @@ cd $execPath
 
 sleep 10
 
-exit 0
+

@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /bin/sh
 mkdir -p /tmp/cert
 cd /tmp/cert
 wget http://anduin.linuxfromscratch.org/sources/other/certdata.txt

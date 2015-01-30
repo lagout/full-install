@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /bin/sh
 execPath=$(readlink -f $(dirname $0))
 
 apt-get -y install libpcre3-dev  build-essential autoconf libtool
@@ -73,4 +73,4 @@ chown root:root /etc/logrotate.d/nginx
 	/etc/init.d/nginx start
 sleep 10
 
-exit 0
+
