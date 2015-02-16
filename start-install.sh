@@ -1,11 +1,11 @@
-#! /bin/sh
+#! /bin/bash
 NORMAL="\\033[0;32m"
 #normal = vert
 JAUNE="\\033[1;33m"
 ROUGE="\\033[1;31m"
 execPath=$(readlink -f $(dirname $0))
 # spiner 
-function _spinner() {
+function _spinner(){
     # $1 start/stop
     #
     # on start: $2 display message
