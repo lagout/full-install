@@ -19,7 +19,7 @@ checkinstall -D -y \
 	--fstrans=no \
 	--reset-uids=yes \
 	--pkgname=openssl \
-	--pkgversion=1.0.1k \
+	--pkgversion=1.0.1l \
 	--pkglicense=GPL \
 	 --pakdir=/usr/src/deb  \
 	--maintainer="lagout " \

@@ -8,10 +8,10 @@ echo  "compilation of php"
 	mkdir /usr/src/php
  
 cd /usr/src/php 
-	wget http://be2.php.net/distributions/php-5.5.21.tar.gz
-	tar zxvf php-5.5.21.tar.gz 
+	wget http://be2.php.net/distributions/php-5.5.22.tar.gz
+	tar zxvf php-5.5.22.tar.gz 
 
-cd php-5.5.21
+cd php-5.5.22
 ./configure  --enable-fpm \
 	--with-fpm-user=nginx \
 	--enable-pdo=shared \
@@ -72,7 +72,7 @@ checkinstall -D -y \
 	--fstrans=no \
 	--reset-uids=yes \
 	--pkgname=php-fpm \
-	--pkgversion=5.5.21 \
+	--pkgversion=5.5.22 \
 	--pkglicense=GPL \
 	--pakdir=/usr/src/deb  \
 	--maintainer="lagout " \
