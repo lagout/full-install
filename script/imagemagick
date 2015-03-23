@@ -11,7 +11,7 @@ checkinstall -D -y \
   --install=no \
   --fstrans=no \
   --reset-uids=yes \
-  --pkgname=imagemagick-common \
+  --pkgname=imagemagick \
   --pkgversion=6.9.0-10 \
   --pkglicense=GPL \
   --maintainer="lagout " \
