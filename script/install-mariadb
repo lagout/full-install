@@ -2,6 +2,7 @@
 execPath=$(readlink -f $(dirname $0))
 
 apt-get build-dep mysql-5.5 -y
+apt-get install -y libncurses5-dev cmake #for raspbian 
 	echo "creating MariaDB's directories"
 mkdir /usr/local/mysql
 mkdir /var/run/mysqld
