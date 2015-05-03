@@ -8,10 +8,10 @@ echo  "compilation of php"
 	mkdir /usr/src/php
  
 cd /usr/src/php 
-	wget http://be2.php.net/distributions/php-5.5.23.tar.gz
-	tar zxvf php-5.5.23.tar.gz 
+	wget http://be2.php.net/distributions/php-5.5.24.tar.gz
+	tar zxvf php-5.5.24.tar.gz 
 
-cd php-5.5.23
+cd php-5.5.24
 ./configure  --enable-fpm \
 	--with-fpm-user=nginx \
 	--enable-pdo=shared \
@@ -72,7 +72,7 @@ checkinstall -D -y \
 	--fstrans=no \
 	--reset-uids=yes \
 	--pkgname=php-fpm \
-	--pkgversion=5.5.23 \
+	--pkgversion=5.5.24 \
 	--pkglicense=GPL \
 	--pakdir=/usr/src/deb  \
 	--maintainer="lagout " \
