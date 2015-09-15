@@ -4,9 +4,9 @@ execPath=$(readlink -f $(dirname $0))
 apt-get build-dep openssl -y
 mkdir /usr/src/ssl
 cd /usr/src/ssl
-wget http://www.openssl.org/source/openssl-1.0.1m.tar.gz
-tar zxvf openssl-1.0.1m.tar.gz
-cd openssl-1.0.1m
+wget http://www.openssl.org/source/openssl-1.0.1p.tar.gz
+tar zxvf openssl-1.0.1p.tar.gz
+cd openssl-1.0.1p
 
 
 ./config --prefix=/usr         \

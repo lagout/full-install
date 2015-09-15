@@ -153,9 +153,9 @@ then
 fi
 echo -e "$ROUGE""#########################################################"
 echo -e "$ROUGE""# This script install:                                  #"
-echo -e "$ROUGE""#            openssl : 1.0.1m                           #"
-echo -e "$ROUGE""#                php : 5.5.24                           #"
-echo -e "$ROUGE""#            MariaDB : 5.5.42                           #"
+echo -e "$ROUGE""#            openssl : 1.0.1p                           #"
+echo -e "$ROUGE""#                php : 5.5.29                           #"
+echo -e "$ROUGE""#            MariaDB : 5.5.45                           #"
 echo -e "$ROUGE""#              nginx : 1.8.0                            #"
 echo -e "$ROUGE""#   Install logs can be found in ./full-install/log     #"
 echo -e "$ROUGE""#########################################################"
