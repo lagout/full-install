@@ -10,9 +10,9 @@ mkdir /usr/src/maria
 	echo  "copy repository in  /usr/src/maria and compilation"
 cd /usr/src/maria 
 	 # copy repository in  /usr/src/maria
-wget http://mariadb.cu.be/mariadb-galera-5.5.45/source/mariadb-galera-5.5.45.tar.gz
-	tar zxvf mariadb-galera-5.5.45.tar.gz
-cd /usr/src/maria/mariadb-5.5.45
+wget http://mariadb.cu.be/mariadb-galera-5.5.48/source/mariadb-galera-5.5.48.tar.gz
+	tar zxvf mariadb-galera-5.5.48.tar.gz
+cd /usr/src/maria/mariadb-5.5.48
 	BUILD/autorun.sh
 	./configure
 	make verbose=1
@@ -21,7 +21,7 @@ cd /usr/src/maria/mariadb-5.5.45
 		--fstrans=no \
 		--reset-uids=yes \
 		--pkgname=mariadb \
-		--pkgversion=5.5.45 \
+		--pkgversion=5.5.48 \
 		--pkglicense=GPL \
 	 	--pakdir=/usr/src/deb  \
 		--maintainer="lagout " \
@@ -44,6 +44,7 @@ cd /usr/local/mysql
 	
 cp ../config/mariadb/mysqld /etc/init.d/mysqld
 	chmod +x /etc/init.d/mysqld
+	cp ../config/systemd/mysqld.service  /etc/systemd/system/multi-user.target.wants/
 	mv /etc/mysql/my.cnf /etc/mysql/my.cnf.default
 	mv /usr/local/mysql/bin/mysql_secure_installation /usr/local/mysql/bin/mysql_secure_installation.hold
 	
@@ -52,7 +53,9 @@ cp ../config/mariadb/mysql_secure_installation /usr/local/mysql/bin/mysql_secure
 	
 cp ../config/mariadb/my.cnf /usr/local/mysql/my.cnf
 	chown -R mysql:mysql /usr/local/mysql
-	/etc/init.d/mysqld start
+	#/etc/init.d/mysqld start
+	systemctl enable mysqld.service
+	systemctl start mysqld.service
 sleep 5
 
 

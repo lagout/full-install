@@ -4,22 +4,23 @@ execPath=$(readlink -f $(dirname $0))
 apt-get build-dep openssl -y
 mkdir /usr/src/ssl
 cd /usr/src/ssl
-wget http://www.openssl.org/source/openssl-1.0.1p.tar.gz
-tar zxvf openssl-1.0.1p.tar.gz
-cd openssl-1.0.1p
+wget http://www.openssl.org/source/openssl-1.0.1s.tar.gz
+tar zxvf openssl-1.0.1s.tar.gz
+cd openssl-1.0.1s
 
 
 ./config --prefix=/usr         \
          --openssldir=/etc/ssl \
          shared                \
-         zlib-dynamic &&
+         zlib-dynamic 
+make depend
 make
 checkinstall -D -y \
 	--install=no \
 	--fstrans=no \
 	--reset-uids=yes \
 	--pkgname=openssl \
-	--pkgversion=1.0.1m \
+	--pkgversion=1.0.1s \
 	--pkglicense=GPL \
 	 --pakdir=/usr/src/deb  \
 	--maintainer="lagout " \

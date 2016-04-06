@@ -79,7 +79,7 @@ function stop_spinner {
 install-minimal(){
 	apt-get update
 	apt-get upgrade -y
-	apt-get install -y wget zlib1g make checkinstall #wget  is not installed on a minimal debootstrap
+	apt-get install -y wget zlib1g zlib1g-dev zlibc make checkinstall #wget  is not installed on a minimal debootstrap
 	apt-get purge openssl -y
 	mkdir /usr/src/deb
 }
@@ -129,7 +129,7 @@ install-3(){
 	stop_spinner $?
 	echo -e "$JAUNE""Making xdebug alvaible to php""$NORMAL"
 	cp $execPath/config/php/extention/xdebug.ini /usr/local/etc/php/mods-available/xdebug.ini
-	/etc/init.d/php-fpm start
+	systemctl restart php-fpm.service
 }
 install-5() {
 	start_spinner 'install MariaDB in progress'
@@ -153,10 +153,10 @@ then
 fi
 echo -e "$ROUGE""#########################################################"
 echo -e "$ROUGE""# This script install:                                  #"
-echo -e "$ROUGE""#            openssl : 1.0.1p                           #"
-echo -e "$ROUGE""#                php : 5.5.29                           #"
-echo -e "$ROUGE""#            MariaDB : 5.5.45                           #"
-echo -e "$ROUGE""#              nginx : 1.8.0                            #"
+echo -e "$ROUGE""#            openssl : 1.0.1s                           #"
+echo -e "$ROUGE""#                php : 5.6.19                           #"
+echo -e "$ROUGE""#            MariaDB : 5.5.48                           #"
+echo -e "$ROUGE""#              nginx : 1.8.1                            #"
 echo -e "$ROUGE""#   Install logs can be found in ./full-install/log     #"
 echo -e "$ROUGE""#########################################################"
 echo -e "$JAUNE""Warning this install can run some time""$NORMAL"
@@ -171,7 +171,7 @@ done
 while true; do
 	read -p "Want to  install all  ?  [y/N]" yn
 		case $yn in
-		[Yy]* )  install-prerequi; install-ssl; install-1;install-ph-ext; install-2; install-3;install-5; sleep 5; secu-m; insserv  php-fpm; insserv  mysqld; insserv  nginx; exit ;;
+		[Yy]* )  install-prerequi; install-ssl; install-1;install-ph-ext; install-2; install-3;install-5; sleep 5; secu-m; exit ;;
 		[Nn]* )  break ;;
 		* ) echo "Type Y or N!";;
 	esac
@@ -188,7 +188,7 @@ done
 while true; do
 	read -p "Want to  install nginx ?  [y/N]" yn
 		case $yn in
-		[Yy]* ) install-1; insserv  nginx; break ;;
+		[Yy]* ) install-1; break ;;
 		[Nn]* ) aborted; break ;;
 		* ) echo "Type Y or N!";;
 	esac
@@ -196,7 +196,7 @@ done
 while true; do
 	read -p "Want to  install php ?  [y/N]" yn
 		case $yn in
-		[Yy]* ) install-ph-ext; install-2; install-3; insserv  php-fpm; break ;;
+		[Yy]* ) install-ph-ext; install-2; install-3; break ;;
 		[Nn]* ) aborted; break ;;
 		* ) echo "Type Y or N!";;
 	esac
@@ -204,7 +204,7 @@ done
 while true; do
 	read -p "Want to  install MariaDB ?  [y/N]" yn
 		case $yn in
-		[Yy]* ) install-5; insserv  mysqld; secu-m; break ;;
+		[Yy]* ) install-5; secu-m; break ;;
 		[Nn]* ) aborted; break ;;
 		* ) echo "Type Y or N!";;
 	esac

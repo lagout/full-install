@@ -1,2 +1,2 @@
 #! /bin/sh
-apt-get install -y libMagickWand5  libMagickWand-dev imagemagick
+apt-get install -y   libMagickWand-dev imagemagick
