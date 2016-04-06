@@ -22,7 +22,6 @@ cd php-5.6.19
 	--enable-ftp \
 	--enable-wddx \
 	--enable-pcntl \
-	--enable-soap \
 	--enable-bcmath \
 	--enable-mbstring \
 	--enable-dba \
