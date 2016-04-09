@@ -122,13 +122,13 @@ install-3(){
 	pecl channel-update pecl.php.net
 	echo -e "$JAUNE""install imagick""$NORMAL"
 	pecl install imagick 
-	cp $execPath/config/php/extention/imagik.ini /usr/local/etc/php/mods-available/imagik.ini
+	cp $execPath/config/php/extention/imagik.ini /etc/php/mods-available/imagik.ini
 	echo -e "$JAUNE""Making imagick alvaible to php""$NORMAL"
 	start_spinner 'install xdebug in progress'
 	pecl install xdebug &>> $execPath/log/install-php.log
 	stop_spinner $?
 	echo -e "$JAUNE""Making xdebug alvaible to php""$NORMAL"
-	cp $execPath/config/php/extention/xdebug.ini /usr/local/etc/php/mods-available/xdebug.ini
+	cp $execPath/config/php/extention/xdebug.ini /etc/php/mods-available/xdebug.ini
 	systemctl restart php-fpm.service
 }
 install-5() {

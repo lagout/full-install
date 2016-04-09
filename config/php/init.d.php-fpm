@@ -14,7 +14,7 @@ prefix=/usr/local
 exec_prefix=${prefix}
 
 php_fpm_BIN=${exec_prefix}/sbin/php-fpm
-php_fpm_CONF=${prefix}/etc/php/fpm/php-fpm.conf
+php_fpm_CONF=/etc/php/fpm/php-fpm.conf
 php_fpm_PID=/var/run/php-fpm.pid
 
 

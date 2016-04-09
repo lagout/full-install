@@ -60,7 +60,9 @@ cd php-5.6.19
 	--with-vpx-dir=/usr/lib/x86_64-linux-gnu/ \
 	--with-jpeg-dir=/usr/lib/x86_64-linux-gnu/ \
 	--with-xpm-dir=/usr/local/lib/ImageMagick-6.9.0/modules-Q16/coders/ \
-	--with-freetype-dir=/usr/lib/x86_64-linux-gnu/ 
+	--with-freetype-dir=/usr/lib/x86_64-linux-gnu/ \
+	--with-config-file-path=/etc/php/cgi \
+	--with-config-file-scan-dir=/etc/php/mods-available
 
 
 make  
@@ -80,7 +82,7 @@ cd /usr/src/deb
 dpkg -i php-fpm*.deb
 
 cd $execPath
-	cp  -r ../config/php/php5 /usr/local/etc/php
+	cp  -r ../config/php/php5  /etc/php
 	cp ../config/php/init.d.php-fpm /etc/init.d/php-fpm
 	chmod +x /etc/init.d/php-fpm
 	cp ../config/systemd/php-fpm.service   /etc/systemd/system/multi-user.target.wants/
