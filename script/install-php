@@ -11,7 +11,7 @@ cd /usr/src/php
 	wget http://be2.php.net/distributions/php-5.6.21.tar.gz
 	tar zxvf php-5.6.21.tar.gz 
 
-cd php-5.6.19
+cd php-5.6.21
 ./configure  --enable-fpm \
 	--with-fpm-user=nginx \
 	--enable-pdo=shared \
