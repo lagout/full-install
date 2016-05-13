@@ -13,9 +13,9 @@ echo "Creating user nginx"
 mkdir -p /usr/src/nginx
 cd /usr/src/nginx 
 echo "download and compilation"
-	wget http://nginx.org/download/nginx-1.8.1.tar.gz -O nginx.tar.gz
+	wget http://nginx.org/download/nginx-1.10.0.tar.gz -O nginx.tar.gz
 	tar zxvf nginx.tar.gz
-cd  nginx-1.8.1
+cd  nginx-1.10.0
 
 ./configure --prefix=/usr/local/nginx \
 	--conf-path=/etc/nginx/nginx.conf \
@@ -43,7 +43,7 @@ checkinstall -D -y \
 	--fstrans=no \
 	--reset-uids=yes \
 	--pkgname=nginx \
-	--pkgversion=1.8.1 \
+	--pkgversion=1.10.0 \
 	--pkglicense=GPL \
 	--pakdir=/usr/src/deb  \
 	--maintainer="lagout " \
