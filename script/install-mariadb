@@ -10,9 +10,9 @@ mkdir /usr/src/maria
 	echo  "copy repository in  /usr/src/maria and compilation"
 cd /usr/src/maria 
 	 # copy repository in  /usr/src/maria
-wget  wget https://downloads.mariadb.org/interstitial/mariadb-5.5.49/source/mariadb-5.5.49.tar.gz
-	tar zxvf mariadb-galera-5.5.49.tar.gz
-cd /usr/src/maria/mariadb-5.5.49
+wget  wget https://downloads.mariadb.org/interstitial/mariadb-5.5.50/source/mariadb-5.5.50.tar.gz
+	tar zxvf mariadb-galera-5.5.50.tar.gz
+cd /usr/src/maria/mariadb-5.5.50
 	BUILD/autorun.sh
 	./configure
 	make verbose=1
@@ -21,7 +21,7 @@ cd /usr/src/maria/mariadb-5.5.49
 		--fstrans=no \
 		--reset-uids=yes \
 		--pkgname=mariadb \
-		--pkgversion=5.5.49 \
+		--pkgversion=5.5.50 \
 		--pkglicense=GPL \
 	 	--pakdir=/usr/src/deb  \
 		--maintainer="lagout " \
