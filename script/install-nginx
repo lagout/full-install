@@ -3,10 +3,8 @@ execPath=$(readlink -f $(dirname $0))
 
 apt-get -y install libpcre3-dev  build-essential autoconf libtool
 echo  "creating  nginx's directories"
+	mkdir -p /var/{cache/{nginx/tmp,nginx/cached},lib/nginx/{body,proxy,fastcgi},log/nginx/}
 	mkdir -p /etc/nginx/{conf.d,sites-available,sites-enabled}
-	mkdir /var/log/nginx
-	mkdir -p /var/lib/nginx/{body,proxy,fastcgi}
-	mkdir -p /var/cache/nginx/{tmp,cached}
 	
 echo "Creating user nginx"
 	useradd -c nginx -d /usr/local/nginx -M -r -s /bin/false -u 755  nginx
