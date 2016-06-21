@@ -129,6 +129,10 @@ install-3(){
 	stop_spinner $?
 	echo -e "$JAUNE""Making xdebug alvaible to php""$NORMAL"
 	cp $execPath/config/php/extention/xdebug.ini /etc/php/mods-available/xdebug.ini
+	pecl install memcache
+	echo -e "$JAUNE""Making memcache alvaible to php""$NORMAL"
+	cp $execPath/config/php/extention/memcache.ini /etc/php/mods-available/memcache.ini
+	
 	systemctl restart php-fpm.service
 }
 install-5() {
