@@ -7,7 +7,10 @@ execPath=$(readlink -f $(dirname $0))
 apt-get build-dep openssl -y
 mkdir /usr/src/ssl
 cd /usr/src/ssl
-wget  --no-check-certificate  http://www.openssl.org/source/openssl-${VERSION}.tar.gz
+wget  http://www.openssl.org/source/openssl-${VERSION}.tar.gz 
+
+apt-get purge openssl -y
+
 tar zxvf openssl-${VERSION}.tar.gz
 cd openssl-${VERSION}
 
@@ -33,7 +36,7 @@ cd /usr/src/deb
 
 dpkg -i openssl*.deb
 
-bash $execPath/ca-cert-nstall
+
 
 
 

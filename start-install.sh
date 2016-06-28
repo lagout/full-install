@@ -1,5 +1,6 @@
 #! /bin/bash
-NORMAL="\\033[0;32m"
+NORMAL="\\033[0m"
+GREEN="\\033[0;32m"
 #normal = vert
 JAUNE="\\033[1;33m"
 ROUGE="\\033[1;31m"
@@ -80,7 +81,6 @@ install-minimal(){
 	apt-get update
 	apt-get upgrade -y
 	apt-get install -y wget zlib1g zlib1g-dev zlibc make checkinstall #wget  is not installed on a minimal debootstrap
-	apt-get purge openssl -y
 	mkdir /usr/src/deb
 }
 install-prerequi(){
@@ -165,7 +165,7 @@ echo -e "$ROUGE""#   Install logs can be found in ./full-install/log     #"
 echo -e "$ROUGE""#########################################################"
 echo -e "$JAUNE""Warning this install can run some time""$NORMAL"
 while true; do
-	read -p "Confirm install [Y/N]: " -n 2 confirme
+	read -p "${GREEN}Confirm install [Y/N]: ${NORMAL} " -n 2 confirme
 		case $confirme in
 			[Yy]* ) break;;
 			[Nn]* ) aborted; exit;;
@@ -173,7 +173,7 @@ while true; do
 	esac
 done
 while true; do
-	read -p "Want to  install all  ?  [y/N]" yn
+	read -p "${GREEN}Want to  install all  ? ${NORMAL} [y/N]" yn
 		case $yn in
 		[Yy]* )  install-prerequi; install-ssl; install-1;install-ph-ext; install-2; install-3;install-5; sleep 5; secu-m; exit ;;
 		[Nn]* )  break ;;
@@ -182,7 +182,7 @@ while true; do
 done
 install-prerequi
 while true; do
-	read -p "Want to  install openssl ?  [y/N]" yn
+	read -p "${GREEN}Want to  install openssl ? ${NORMAL} [y/N]" yn
 		case $yn in
 		[Yy]* ) install-ssl; break ;;
 		[Nn]* ) aborted; break ;;
@@ -190,7 +190,7 @@ while true; do
 	esac
 done
 while true; do
-	read -p "Want to  install nginx ?  [y/N]" yn
+	read -p "${GREEN}Want to  install nginx ? ${NORMAL} [y/N]" yn
 		case $yn in
 		[Yy]* ) install-1; break ;;
 		[Nn]* ) aborted; break ;;
@@ -198,7 +198,7 @@ while true; do
 	esac
 done
 while true; do
-	read -p "Want to  install php ?  [y/N]" yn
+	read -p "${GREEN}Want to  install php ? ${NORMAL} [y/N]" yn
 		case $yn in
 		[Yy]* ) install-ph-ext; install-2; install-3; break ;;
 		[Nn]* ) aborted; break ;;
@@ -206,7 +206,7 @@ while true; do
 	esac
 done
 while true; do
-	read -p "Want to  install MariaDB ?  [y/N]" yn
+	read -p "${GREEN}Want to  install MariaDB ? ${NORMAL} [y/N]" yn
 		case $yn in
 		[Yy]* ) install-5; secu-m; break ;;
 		[Nn]* ) aborted; break ;;
