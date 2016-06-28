@@ -1,4 +1,5 @@
 #! /bin/sh
+VERSION=5.5.50
 execPath=$(readlink -f $(dirname $0))
 
 apt-get build-dep mysql-5.5 -y
@@ -10,9 +11,9 @@ mkdir /usr/src/maria
 	echo  "copy repository in  /usr/src/maria and compilation"
 cd /usr/src/maria 
 	 # copy repository in  /usr/src/maria
-wget  wget https://downloads.mariadb.org/interstitial/mariadb-5.5.50/source/mariadb-5.5.50.tar.gz
-	tar zxvf mariadb-5.5.50.tar.gz
-cd /usr/src/maria/mariadb-5.5.50
+wget https://downloads.mariadb.org/interstitial/mariadb-${VERSION}/source/mariadb-${VERSION}.tar.gz
+	tar zxvf mariadb-${VERSION}.tar.gz
+cd /usr/src/maria/mariadb-${VERSION}
 	BUILD/autorun.sh
 	./configure
 	make verbose=1
@@ -21,7 +22,7 @@ cd /usr/src/maria/mariadb-5.5.50
 		--fstrans=no \
 		--reset-uids=yes \
 		--pkgname=mariadb \
-		--pkgversion=5.5.50 \
+		--pkgversion=${VERSION} \
 		--pkglicense=GPL \
 	 	--pakdir=/usr/src/deb  \
 		--maintainer="lagout " \

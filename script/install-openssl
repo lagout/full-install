@@ -1,12 +1,15 @@
 #! /bin/sh
+VERSION=1.0.1t
 execPath=$(readlink -f $(dirname $0))
+
+
 
 apt-get build-dep openssl -y
 mkdir /usr/src/ssl
 cd /usr/src/ssl
-wget  --no-check-certificate  http://www.openssl.org/source/openssl-1.0.1t.tar.gz
-tar zxvf openssl-1.0.1t.tar.gz
-cd openssl-1.0.1t
+wget  --no-check-certificate  http://www.openssl.org/source/openssl-${VERSION}.tar.gz
+tar zxvf openssl-${VERSION}.tar.gz
+cd openssl-${VERSION}
 
 
 ./config --prefix=/usr         \
@@ -20,7 +23,7 @@ checkinstall -D -y \
 	--fstrans=no \
 	--reset-uids=yes \
 	--pkgname=openssl \
-	--pkgversion=1.0.1t \
+	--pkgversion=${VERSION} \
 	--pkglicense=GPL \
 	 --pakdir=/usr/src/deb  \
 	--maintainer="lagout " \
