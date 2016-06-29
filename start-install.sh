@@ -135,7 +135,7 @@ install-3(){
 	
 	systemctl restart php-fpm.service
 }
-install-5() {
+install-4() {
 	start_spinner 'install MariaDB in progress'
 	bash $execPath/script/install-mariadb &> $execPath/log/install-mariadb.log
 	stop_spinner $?
@@ -165,7 +165,7 @@ echo -e "$ROUGE""#   Install logs can be found in ./full-install/log     #"
 echo -e "$ROUGE""#########################################################"
 echo -e "$JAUNE""Warning this install can run some time""$NORMAL"
 while true; do
-	read -p "${GREEN}Confirm install [Y/N]: ${NORMAL} " -n 2 confirme
+	read -p "Confirm install [Y/N]:" -n 2 confirme
 		case $confirme in
 			[Yy]* ) break;;
 			[Nn]* ) aborted; exit;;
@@ -173,16 +173,16 @@ while true; do
 	esac
 done
 while true; do
-	read -p "${GREEN}Want to  install all  ? ${NORMAL} [y/N]" yn
+	read -p "Want to  install all  ?  [y/N]" yn
 		case $yn in
-		[Yy]* )  install-prerequi; install-ssl; install-1;install-ph-ext; install-2; install-3;install-5; sleep 5; secu-m; exit ;;
+		[Yy]* )  install-prerequi; install-ssl; install-1;install-ph-ext; install-2; install-3;install-4; sleep 5; secu-m; exit ;;
 		[Nn]* )  break ;;
 		* ) echo "Type Y or N!";;
 	esac
 done
 install-prerequi
 while true; do
-	read -p "${GREEN}Want to  install openssl ? ${NORMAL} [y/N]" yn
+	read -p "Want to  install openssl ?[y/N]" yn
 		case $yn in
 		[Yy]* ) install-ssl; break ;;
 		[Nn]* ) aborted; break ;;
@@ -190,7 +190,7 @@ while true; do
 	esac
 done
 while true; do
-	read -p "${GREEN}Want to  install nginx ? ${NORMAL} [y/N]" yn
+	read -p "Want to  install nginx ?[y/N]" yn
 		case $yn in
 		[Yy]* ) install-1; break ;;
 		[Nn]* ) aborted; break ;;
@@ -198,7 +198,7 @@ while true; do
 	esac
 done
 while true; do
-	read -p "${GREEN}Want to  install php ? ${NORMAL} [y/N]" yn
+	read -p "Want to  install php ?  [y/N]" yn
 		case $yn in
 		[Yy]* ) install-ph-ext; install-2; install-3; break ;;
 		[Nn]* ) aborted; break ;;
@@ -206,9 +206,9 @@ while true; do
 	esac
 done
 while true; do
-	read -p "${GREEN}Want to  install MariaDB ? ${NORMAL} [y/N]" yn
+	read -p "Want to  install MariaDB ?[y/N]" yn
 		case $yn in
-		[Yy]* ) install-5; secu-m; break ;;
+		[Yy]* ) install-4; secu-m; break ;;
 		[Nn]* ) aborted; break ;;
 		* ) echo "Type Y or N!";;
 	esac
