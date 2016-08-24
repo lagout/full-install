@@ -1,5 +1,5 @@
 #! /bin/sh
-VERSION=5.5.50
+VERSION=5.5.51
 execPath=$(readlink -f $(dirname $0))
 
 apt-get build-dep mysql-5.5 -y
@@ -29,7 +29,7 @@ cd /usr/src/maria/mariadb-${VERSION}
 		--nodoc
 
 cd /usr/src/deb
-dpkg -i mariadb*.deb
+dpkg -i mariadb.deb
 
 
 # Creating user MariaDB, keep the id between 750 and 900 by carefully
