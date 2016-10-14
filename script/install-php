@@ -1,5 +1,5 @@
 #! /bin/sh
-VERSION=5.6.25
+VERSION=5.6.26
 execPath=$(readlink -f $(dirname $0))
 #les dependence php
 echo  "instaling dependancies "
@@ -14,6 +14,8 @@ cd /usr/src/php
 
 cd php-${VERSION}
 ./configure  --enable-fpm \
+	 --prefix=/usr \
+	 --sbindir=/usr/bin \
 	--with-fpm-user=nginx \
 	--enable-pdo=shared \
 	--with-pdo-mysql=shared \

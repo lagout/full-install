@@ -17,6 +17,7 @@ echo "download and compilation"
 cd  nginx-${VERSION}
 
 ./configure --prefix=/usr/local/nginx \
+	--sbin-path=/usr/bin \
 	--conf-path=/etc/nginx/nginx.conf \
 	--http-log-path=/var/log/nginx/access_log \
 	--error-log-path=/var/log/nginx/error_log \

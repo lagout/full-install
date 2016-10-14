@@ -158,7 +158,7 @@ fi
 echo -e "$ROUGE""#########################################################"
 echo -e "$ROUGE""# This script install:                                  #"
 echo -e "$ROUGE""#            openssl : 1.0.2h                           #"
-echo -e "$ROUGE""#                php : 5.6.25                           #"
+echo -e "$ROUGE""#                php : 5.6.26                           #"
 echo -e "$ROUGE""#            MariaDB : 5.5.51                           #"
 echo -e "$ROUGE""#              nginx : 1.10.1                           #"
 echo -e "$ROUGE""#   Install logs can be found in ./full-install/log     #"
