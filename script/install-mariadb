@@ -1,5 +1,5 @@
 #! /bin/sh
-VERSION=5.5.51
+VERSION=5.5.53
 execPath=$(readlink -f $(dirname $0))
 
 apt-get build-dep mysql-5.5 -y
